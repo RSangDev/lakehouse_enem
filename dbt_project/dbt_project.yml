@@ -1,0 +1,14 @@
+name: 'lakehouse_enem'
+version: '1.0.0'
+config-version: 2
+
+profile: 'lakehouse_enem'
+model-paths: ["models"]
+macro-paths: ["macros"]
+
+models:
+  lakehouse_enem:
+    silver:
+      +materialized: view    # lê direto do parquet via DuckDB
+    gold:
+      +materialized: table   # materializa para o dashboard consumir
