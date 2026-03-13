@@ -1,0 +1,7 @@
+lakehouse_enem:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "../data/warehouse/lakehouse.duckdb"
+      threads: 2
