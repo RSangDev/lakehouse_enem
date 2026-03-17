@@ -1,0 +1,31 @@
+version: "3.8"
+
+# Roda o Spark standalone localmente — sem precisar instalar Java na máquina.
+# Os jobs Python são montados via volume e executados no container.
+#
+# Uso:
+#   docker compose up -d spark
+#   docker compose exec spark python /app/spark_jobs/bronze.py
+#   docker compose down
+
+services:
+  spark:
+    image: bitnami/spark:3.5
+    container_name: lakehouse_spark
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_OPTS=-Dspark.deploy.defaultCores=2
+    volumes:
+      - ..:/app                      # monta o projeto inteiro
+      - spark_packages:/root/.ivy2   # cache dos JARs do Delta Lake
+    ports:
+      - "4040:4040"   # Spark UI
+      - "7077:7077"   # Spark master
+    command: >
+      bash -c "
+        pip install delta-spark==3.2.0 duckdb pandas numpy --quiet &&
+        /opt/bitnami/scripts/spark/run.sh
+      "
+
+volumes:
+  spark_packages:
