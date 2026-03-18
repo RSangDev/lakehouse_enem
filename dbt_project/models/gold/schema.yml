@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: gld_desempenho_uf
+    description: "Desempenho médio por UF e ano — camada gold para o dashboard"
+    columns:
+      - name: uf
+        data_tests: [not_null]
+      - name: ano
+        data_tests: [not_null]
+      - name: total_candidatos
+        data_tests: [not_null]
+      - name: media_geral
+        data_tests: [not_null]
+      - name: pct_escola_publica
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 100
+
+  - name: gld_desempenho_renda
+    description: "Desempenho por faixa de renda e tipo de escola"
+    columns:
+      - name: grupo_renda
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Baixa', 'Média', 'Alta']
+      - name: media_geral
+        data_tests: [not_null]
+
+  - name: gld_evolucao_anual
+    description: "Evolução anual por região com variação YoY"
+    columns:
+      - name: regiao
+        data_tests: [not_null]
+      - name: ano
+        data_tests: [not_null]

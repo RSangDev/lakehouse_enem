@@ -90,64 +90,68 @@ PURPLE = "#a78bfa"
 COLORS = [BLUE, CYAN, GREEN, ORANGE, PURPLE, "#ec4899", "#eab308"]
 
 
-# ─── Helpers ─────────────────────────────────────────────────────
-@st.cache_data(ttl=120)
-def query(sql: str) -> pd.DataFrame:
-    for ro in (True, False):
-        try:
-            conn = duckdb.connect(DW_PATH, read_only=ro)
-            # Auto-detecta schema gold (pode ser 'gold' ou 'main_gold')
-            gold_schema = "gold"
-            for s in ("gold", "main_gold"):
-                try:
-                    conn.execute(f"SELECT 1 FROM {s}.gld_desempenho_uf LIMIT 1")
-                    gold_schema = s
-                    break
-                except Exception:
-                    continue
-            resolved = sql.replace("{schema}", gold_schema).replace("main_gold.", f"{gold_schema}.")
-            df = conn.execute(resolved).df()
-            conn.close()
-            return df
-        except Exception:
-            continue
-    return pd.DataFrame()
-
-def dw_ok() -> bool:
-    if not os.path.exists(DW_PATH):
-        return False
-    for readonly in (True, False):
-        for schema in ("gold", "main_gold"):
-            try:
-                conn = duckdb.connect(DW_PATH, read_only=readonly)
-                conn.execute(f"SELECT 1 FROM {schema}.gld_desempenho_uf LIMIT 1")
-                conn.close()
-                return True
-            except Exception:
-                continue
-    return False
-
-def _gold_schema(conn) -> str:
-    """Detecta se o schema gold foi criado como 'gold' ou 'main_gold'."""
-    for s in ("gold", "main_gold"):
+# ─── Schema detection ────────────────────────────────────────────
+def _detect_gold_schema(conn) -> str:
+    """
+    Detecta em qual schema o dbt criou as tabelas gold.
+    dbt-duckdb pode criar em 'main', 'main_gold', 'gold' dependendo da config.
+    """
+    candidates = ["main", "main_gold", "gold"]
+    for s in candidates:
         try:
             conn.execute(f"SELECT 1 FROM {s}.gld_desempenho_uf LIMIT 1")
             return s
         except Exception:
             continue
-    return "gold"
+    return "main"
 
-def Q(table: str, extra: str = "") -> pd.DataFrame:
+
+@st.cache_data(ttl=120)
+def _get_gold_schema() -> str:
     for ro in (True, False):
         try:
             conn = duckdb.connect(DW_PATH, read_only=ro)
-            schema = _gold_schema(conn)
-            df = conn.execute(f"SELECT * FROM {schema}.{table} {extra}").df()
+            schema = _detect_gold_schema(conn)
+            conn.close()
+            return schema
+        except Exception:
+            continue
+    return "main"
+
+
+def query(sql: str) -> pd.DataFrame:
+    schema = _get_gold_schema()
+    resolved = sql.replace("{GOLD}", schema)
+    for ro in (True, False):
+        try:
+            conn = duckdb.connect(DW_PATH, read_only=ro)
+            df   = conn.execute(resolved).df()
             conn.close()
             return df
         except Exception:
             continue
     return pd.DataFrame()
+
+
+def dw_ok() -> bool:
+    if not os.path.exists(DW_PATH):
+        return False
+    for ro in (True, False):
+        try:
+            conn = duckdb.connect(DW_PATH, read_only=ro)
+            _detect_gold_schema(conn)  # raises if not found
+            # test actual query
+            schema = _detect_gold_schema(conn)
+            conn.execute(f"SELECT 1 FROM {schema}.gld_desempenho_uf LIMIT 1")
+            conn.close()
+            return True
+        except Exception:
+            continue
+    return False
+
+
+def Q(table: str, extra: str = "") -> pd.DataFrame:
+    return query(f"SELECT * FROM {{GOLD}}.{table} {extra}")
 
 
 # ─── Sidebar ─────────────────────────────────────────────────────
@@ -223,11 +227,11 @@ if page == "🏠 Visão Geral":
 
     df = Q("gld_desempenho_uf", "WHERE ano = 2022")
     kpis = [
-        ("#3b82f6", f"{df['total_candidatos'].sum():,.0f}", "Candidatos 2022", "registros gold"),
-        ("#06b6d4", f"{df['media_geral'].mean():.1f}",     "Média Geral",      "Brasil 2022"),
-        ("#22c55e", f"{df['media_matematica'].mean():.1f}","Média Matemática",  "Brasil 2022"),
+        ("#3b82f6", f"{df['total_candidatos'].sum():,.0f}", "Candidatos 2022",   "registros gold"),
+        ("#06b6d4", f"{df['media_geral'].mean():.1f}",      "Média Geral",        "Brasil 2022"),
+        ("#22c55e", f"{df['media_matematica'].mean():.1f}", "Média Matemática",   "Brasil 2022"),
         ("#a78bfa", f"{df['pct_escola_publica'].mean():.0f}%", "Escola Pública", "dos candidatos"),
-        ("#f97316", f"{df['uf'].nunique()}",                "UFs analisadas",   "gold layer"),
+        ("#f97316", f"{df['uf'].nunique()}",                 "UFs analisadas",    "gold layer"),
     ]
     cols = st.columns(5)
     for col, (accent, val, lbl, sub) in zip(cols, kpis):
@@ -246,7 +250,7 @@ if page == "🏠 Visão Geral":
         st.markdown('<div class="sec">Média Geral por Região — 2022</div>', unsafe_allow_html=True)
         reg = query("""
             SELECT regiao, ROUND(AVG(media_geral),2) AS media, SUM(total_candidatos) AS n
-            FROM {schema}.gld_desempenho_uf WHERE ano = 2022 GROUP BY regiao ORDER BY media DESC
+            FROM {GOLD}.gld_desempenho_uf WHERE ano = 2022 GROUP BY regiao ORDER BY media DESC
         """)
         fig = px.bar(reg, x="regiao", y="media", color="regiao",
                      color_discrete_sequence=COLORS, text="media")
@@ -255,15 +259,7 @@ if page == "🏠 Visão Geral":
         st.plotly_chart(fig, width="stretch")
 
     with col_b:
-        st.markdown('<div class="sec">Distribuição de Desempenho — 2022</div>', unsafe_allow_html=True)
-        dist = query("""
-            SELECT faixa_desempenho, COUNT(*) AS n
-            FROM {schema}.gld_desempenho_uf
-            -- nota: faixa não está no gold, vamos usar percentil
-            -- fallback: média por faixa via silver diretamente
-            WHERE 1=0
-        """)
-        # Usa os dados que temos
+        st.markdown('<div class="sec">Escola Pública × Média Geral — UFs 2022</div>', unsafe_allow_html=True)
         fig2 = px.scatter(df, x="pct_escola_publica", y="media_geral",
                           size="total_candidatos", color="regiao", text="uf",
                           color_discrete_sequence=COLORS, size_max=30, opacity=0.8)
@@ -282,7 +278,7 @@ elif page == "🗺️  Por UF":
     st.markdown("""
     <div class="hero">
         <h1>🗺️ Desempenho por <span>UF</span></h1>
-        <p>gold.gld_desempenho_uf · Médias e rankings por estado</p>
+        <p>gld_desempenho_uf · Médias e rankings por estado</p>
     </div>""", unsafe_allow_html=True)
 
     df_all = Q("gld_desempenho_uf")
@@ -305,7 +301,7 @@ elif page == "🗺️  Por UF":
         st.plotly_chart(fig, width="stretch")
 
     with col_b:
-        st.markdown('<div class="sec">Escola Pública vs. Nota — UFs</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sec">Escola Pública vs. Nota</div>', unsafe_allow_html=True)
         fig2 = px.scatter(df, x="pct_escola_publica", y="media_geral",
                           size="total_candidatos", color="regiao",
                           text="uf", color_discrete_sequence=COLORS,
@@ -325,7 +321,7 @@ elif page == "💰 Renda & Escola":
     st.markdown("""
     <div class="hero">
         <h1>💰 Renda & <span>Escola</span></h1>
-        <p>gold.gld_desempenho_renda · Desigualdade educacional nos dados do ENEM</p>
+        <p>gld_desempenho_renda · Desigualdade educacional nos dados do ENEM</p>
     </div>""", unsafe_allow_html=True)
 
     df = Q("gld_desempenho_renda", "WHERE ano = 2022")
@@ -341,7 +337,7 @@ elif page == "💰 Renda & Escola":
         st.plotly_chart(fig, width="stretch")
 
     with col_b:
-        st.markdown('<div class="sec">Pública vs Privada — Média por Renda</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sec">Pública vs Privada — por Renda</div>', unsafe_allow_html=True)
         pivot = df.pivot_table(values="media_geral", index="grupo_renda",
                                columns="tp_escola", aggfunc="mean").reset_index()
         fig2 = go.Figure()
@@ -367,7 +363,7 @@ elif page == "📈 Evolução Anual":
     st.markdown("""
     <div class="hero">
         <h1>📈 Evolução <span>Anual</span></h1>
-        <p>gold.gld_evolucao_anual · Variação YoY por região · dbt window functions</p>
+        <p>gld_evolucao_anual · Variação YoY por região · dbt window functions</p>
     </div>""", unsafe_allow_html=True)
 
     df = Q("gld_evolucao_anual")
@@ -412,7 +408,7 @@ elif page == "⏱️  Time Travel":
          "Consulta como os dados estavam em qualquer data/hora passada.",
          'df = spark.read.format("delta").option("timestampAsOf", "2024-01-01").load(PATH)'),
         ("HISTORY",
-         "Auditoria completa de todas as operações: quem escreveu, quando, qual operação.",
+         "Auditoria completa: quem escreveu, quando, qual operação.",
          'DeltaTable.forPath(spark, PATH).history().show()'),
         ("ROLLBACK",
          "Restaura a tabela para qualquer versão anterior com uma linha.",
@@ -434,8 +430,6 @@ elif page == "⏱️  Time Travel":
 
     st.markdown('<div class="sec">Como rodar o demo de Time Travel</div>', unsafe_allow_html=True)
     st.code("python spark_jobs/time_travel.py", language="bash")
-    st.info("O script executa todas as 6 demos acima no terminal e imprime os resultados. "
-            "A pasta `data/delta/silver/enem/_delta_log/` guarda o histórico completo de versões.")
 
 
 # ════════════════════════════════════════════════════════════════
@@ -449,13 +443,13 @@ elif page == "⚙️  Arquitetura":
     </div>""", unsafe_allow_html=True)
 
     steps = [
-        ("🟠", "INGESTÃO",        "ingestion/download.py — gera microdados ENEM simulados (estrutura real do INEP)<br>Saída: data/raw/enem_{ano}.csv"),
-        ("🟠", "BRONZE",          "spark_jobs/bronze.py — PySpark lê os CSVs com schema explícito e escreve em Delta Lake<br>Particionado por ano · colunas de auditoria _bronze_loaded_at, _source_file"),
-        ("⚪", "SILVER",          "spark_jobs/silver.py — limpeza, médias, faixas de desempenho<br>ACID MERGE: upsert atômico · Schema Evolution: percentil_nacional adicionado sem recriar"),
-        ("🔵", "BRIDGE",          "spark_jobs/delta_to_duckdb.py — exporta Silver para Parquet e registra como view no DuckDB<br>Ponte entre o mundo Spark e o mundo dbt"),
-        ("🔵", "GOLD (dbt)",      "dbt lê silver.enem via DuckDB e materializa 3 modelos gold<br>gld_desempenho_uf · gld_desempenho_renda · gld_evolucao_anual"),
-        ("🟢", "TIME TRAVEL",     "spark_jobs/time_travel.py — demonstra VERSION AS OF, TIMESTAMP AS OF, HISTORY, ROLLBACK<br>_delta_log/ guarda todas as versões automaticamente"),
-        ("🟣", "DASHBOARD",       "dashboard/app.py — Streamlit consome o gold layer via DuckDB read-only<br>5 páginas analíticas + página dedicada ao Time Travel"),
+        ("🟠", "INGESTÃO",   "ingestion/download.py — gera microdados ENEM simulados (estrutura real INEP)<br>Saída: data/raw/enem_{ano}.csv"),
+        ("🟠", "BRONZE",     "spark_jobs/bronze.py — PySpark escreve em Delta Lake com schema enforcement<br>Particionado por ano · colunas de auditoria"),
+        ("⚪", "SILVER",     "spark_jobs/silver.py — limpeza · médias · faixas · ACID MERGE<br>Schema Evolution: percentil_nacional adicionado após o merge"),
+        ("🔵", "BRIDGE",     "spark_jobs/delta_to_duckdb.py — Silver Delta → Parquet → DuckDB view<br>Ponte entre o mundo Spark e o mundo dbt"),
+        ("🔵", "GOLD (dbt)", "3 modelos: gld_desempenho_uf · gld_desempenho_renda · gld_evolucao_anual<br>dbt lê silver.enem via DuckDB e materializa as tabelas gold"),
+        ("🟢", "TIME TRAVEL","spark_jobs/time_travel.py — VERSION AS OF · TIMESTAMP AS OF · HISTORY · ROLLBACK<br>_delta_log/ registra automaticamente cada versão"),
+        ("🟣", "DASHBOARD",  "Streamlit consome gold via DuckDB read-only · 6 páginas analíticas"),
     ]
 
     for icon, title, desc in steps:
@@ -467,10 +461,10 @@ elif page == "⚙️  Arquitetura":
 
     st.markdown('<div class="sec">Stack</div>', unsafe_allow_html=True)
     st.dataframe(pd.DataFrame([
-        ["Armazenamento",  "Delta Lake 3.2",     "Formato ACID com time travel e schema evolution"],
-        ["Processamento",  "PySpark 3.5",         "Transformações distribuídas, merge, particionamento"],
-        ["Transformação",  "dbt-duckdb 1.8",      "Gold layer com SQL + testes de qualidade"],
-        ["Query Engine",   "DuckDB 0.10",          "Lê Parquet nativamente, serve o dashboard"],
-        ["Dashboard",      "Streamlit + Plotly",   "Consome gold layer via DuckDB read-only"],
-        ["CI/CD",          "GitHub Actions",       "dbt parse → run → test a cada push"],
+        ["Armazenamento",  "Delta Lake 3.2",    "Formato ACID com time travel e schema evolution"],
+        ["Processamento",  "PySpark 3.5",        "Transformações, merge, particionamento"],
+        ["Transformação",  "dbt-duckdb 1.8",     "Gold layer com SQL + testes de qualidade"],
+        ["Query Engine",   "DuckDB 0.10",         "Lê Parquet nativamente, serve o dashboard"],
+        ["Dashboard",      "Streamlit + Plotly",  "Consome gold layer via DuckDB"],
+        ["CI/CD",          "GitHub Actions",      "dbt parse → run → test a cada push"],
     ], columns=["Camada", "Tecnologia", "Papel"]), width="stretch", hide_index=True)

@@ -2,7 +2,6 @@ version: 2
 
 sources:
   - name: silver
-    schema: silver          # schema criado pelo delta_to_duckdb.py no DuckDB
     description: "Silver layer exportada do Delta Lake via Parquet → DuckDB"
     tables:
       - name: enem
@@ -13,6 +12,6 @@ sources:
           - name: ano
             description: "Ano de aplicação do ENEM"
           - name: media_geral
-            description: "Média ponderada de todas as provas"
+            description: "Média ponderada de todas as provas (objetivas 80% + redação 20%)"
           - name: percentil_nacional
-            description: "Percentil nacional — adicionado via schema evolution"
+            description: "Percentil do candidato em relação ao Brasil — adicionado via schema evolution"

@@ -5,9 +5,3 @@ config-version: 2
 profile: 'lakehouse_enem'
 model-paths: ["models"]
 macro-paths: ["macros"]
-
-models:
-  lakehouse_enem:
-    gold:
-      +materialized: table
-      +schema: gold

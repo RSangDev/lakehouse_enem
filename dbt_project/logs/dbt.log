@@ -170,3 +170,936 @@ There are 1 unused configuration paths:
 [0m17:42:41.082432 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018C62D73D50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018C62D72BD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018C62D73DD0>]}
 [0m17:42:41.083439 [debug] [MainThread]: Flushing usage events
 [0m17:42:41.929944 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:13:27.365755 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B0338D52D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B0338D6250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B0338D6DD0>]}
+
+
+============================== 18:13:27.379964 | c766bcba-1bcc-440f-b729-e3b8e9895107 ==============================
+[0m18:13:27.379964 [info ] [MainThread]: Running with dbt=1.11.7
+[0m18:13:27.380960 [debug] [MainThread]: running dbt with arguments {'log_format': 'default', 'target_path': 'None', 'profiles_dir': 'D:\\Projetos\\lakehouse_enem\\dbt_project', 'printer_width': '80', 'use_colors': 'True', 'warn_error': 'None', 'static_parser': 'True', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'D:\\Projetos\\lakehouse_enem\\dbt_project\\logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'version_check': 'True', 'introspect': 'True', 'quiet': 'False', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'invocation_command': 'dbt deps', 'cache_selected_only': 'False', 'write_json': 'True'}
+[0m18:13:27.587182 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c766bcba-1bcc-440f-b729-e3b8e9895107', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B0338D58D0>]}
+[0m18:13:27.980546 [debug] [MainThread]: Set downloads directory='C:\Users\rafas\AppData\Local\Temp\dbt-downloads-s6u3_2o0'
+[0m18:13:27.981547 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m18:13:28.409973 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m18:13:28.411977 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m18:13:28.739362 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m18:13:28.749310 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m18:13:29.716004 [info ] [MainThread]: Installed from version 1.3.0
+[0m18:13:29.716997 [info ] [MainThread]: Updated version available: 1.3.3
+[0m18:13:29.717998 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'c766bcba-1bcc-440f-b729-e3b8e9895107', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B033A03F90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B033A03910>]}
+[0m18:13:29.717998 [info ] [MainThread]: 
+[0m18:13:29.719004 [info ] [MainThread]: Updates available for packages: ['dbt-labs/dbt_utils']                 
+Update your versions in packages.yml, then run dbt deps
+[0m18:13:29.721012 [debug] [MainThread]: Command `dbt deps` succeeded at 18:13:29.721012 after 2.44 seconds
+[0m18:13:29.721999 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B0336D2E50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B02E661C10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B02E662310>]}
+[0m18:13:29.722998 [debug] [MainThread]: Flushing usage events
+[0m18:13:30.651985 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:13:32.883377 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B81B52D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B81FCA50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B81FC090>]}
+
+
+============================== 18:13:32.888385 | 0338fbcd-5705-4eb8-8ddc-f9439ba112d6 ==============================
+[0m18:13:32.888385 [info ] [MainThread]: Running with dbt=1.11.7
+[0m18:13:32.889385 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'profiles_dir': '.', 'log_format': 'default', 'invocation_command': 'dbt run --profiles-dir . --project-dir .', 'write_json': 'True', 'warn_error': 'None', 'indirect_selection': 'eager', 'partial_parse': 'True', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_path': 'logs', 'use_experimental_parser': 'False', 'version_check': 'True', 'introspect': 'True', 'quiet': 'False', 'empty': 'False', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'use_colors': 'True', 'cache_selected_only': 'False', 'target_path': 'None'}
+[0m18:13:33.282610 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B8268050>]}
+[0m18:13:33.338777 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B2DF81D0>]}
+[0m18:13:33.348773 [info ] [MainThread]: Registered adapter: duckdb=1.8.1
+[0m18:13:33.827866 [debug] [MainThread]: checksum: b80718358155fc17c3559352095564dd56ada1cc1a1c0ef2e62c857e71583775, vars: {}, profile: , target: , version: 1.11.7
+[0m18:13:33.864871 [info ] [MainThread]: Unable to do partial parsing because a project config has changed
+[0m18:13:33.865871 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B63C30D0>]}
+[0m18:13:36.109373 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B8A44AD0>]}
+[0m18:13:36.189937 [debug] [MainThread]: Wrote artifact WritableManifest to .\target\manifest.json
+[0m18:13:36.197936 [debug] [MainThread]: Wrote artifact SemanticManifest to .\target\semantic_manifest.json
+[0m18:13:36.291561 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B8DF0750>]}
+[0m18:13:36.292571 [info ] [MainThread]: Found 3 models, 11 data tests, 1 source, 571 macros
+[0m18:13:36.293562 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B89CDF10>]}
+[0m18:13:36.297559 [info ] [MainThread]: 
+[0m18:13:36.298561 [info ] [MainThread]: Concurrency: 2 threads (target='dev')
+[0m18:13:36.299578 [info ] [MainThread]: 
+[0m18:13:36.300569 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m18:13:36.307075 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_lakehouse'
+[0m18:13:39.436345 [debug] [ThreadPool]: Using duckdb connection "list_lakehouse"
+[0m18:13:39.437344 [debug] [ThreadPool]: On list_lakehouse: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "connection_name": "list_lakehouse"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where catalog_name = '"lakehouse"'
+    
+  
+  
+[0m18:13:39.437344 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:13:39.480323 [debug] [ThreadPool]: SQL status: OK in 0.042 seconds
+[0m18:13:39.482315 [debug] [ThreadPool]: On list_lakehouse: Close
+[0m18:13:39.485313 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_lakehouse, now create_lakehouse_main)
+[0m18:13:39.486312 [debug] [ThreadPool]: Creating schema "database: "lakehouse"
+schema: "main"
+"
+[0m18:13:39.492315 [debug] [ThreadPool]: Using duckdb connection "create_lakehouse_main"
+[0m18:13:39.493326 [debug] [ThreadPool]: On create_lakehouse_main: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "connection_name": "create_lakehouse_main"} */
+
+    
+        select type from duckdb_databases()
+        where database_name='lakehouse'
+        and type='sqlite'
+    
+  
+[0m18:13:39.494328 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m18:13:39.508339 [debug] [ThreadPool]: SQL status: OK in 0.014 seconds
+[0m18:13:39.510336 [debug] [ThreadPool]: Using duckdb connection "create_lakehouse_main"
+[0m18:13:39.511330 [debug] [ThreadPool]: On create_lakehouse_main: BEGIN
+[0m18:13:39.511330 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m18:13:39.512329 [debug] [ThreadPool]: Using duckdb connection "create_lakehouse_main"
+[0m18:13:39.513335 [debug] [ThreadPool]: On create_lakehouse_main: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "connection_name": "create_lakehouse_main"} */
+
+    
+    
+        create schema if not exists "lakehouse"."main"
+    
+[0m18:13:39.514328 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m18:13:39.515330 [debug] [ThreadPool]: On create_lakehouse_main: COMMIT
+[0m18:13:39.515840 [debug] [ThreadPool]: Using duckdb connection "create_lakehouse_main"
+[0m18:13:39.516841 [debug] [ThreadPool]: On create_lakehouse_main: COMMIT
+[0m18:13:39.516841 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m18:13:39.517848 [debug] [ThreadPool]: On create_lakehouse_main: Close
+[0m18:13:39.521841 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_lakehouse_main'
+[0m18:13:39.527359 [debug] [ThreadPool]: Using duckdb connection "list_lakehouse_main"
+[0m18:13:39.528354 [debug] [ThreadPool]: On list_lakehouse_main: BEGIN
+[0m18:13:39.528354 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:13:39.542728 [debug] [ThreadPool]: SQL status: OK in 0.013 seconds
+[0m18:13:39.542728 [debug] [ThreadPool]: Using duckdb connection "list_lakehouse_main"
+[0m18:13:39.543730 [debug] [ThreadPool]: On list_lakehouse_main: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "connection_name": "list_lakehouse_main"} */
+select
+      'lakehouse' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where table_schema = 'main'
+    and table_catalog = 'lakehouse'
+  
+[0m18:13:39.563726 [debug] [ThreadPool]: SQL status: OK in 0.019 seconds
+[0m18:13:39.565734 [debug] [ThreadPool]: On list_lakehouse_main: ROLLBACK
+[0m18:13:39.580114 [debug] [ThreadPool]: Failed to rollback 'list_lakehouse_main'
+[0m18:13:39.581095 [debug] [ThreadPool]: On list_lakehouse_main: Close
+[0m18:13:39.584091 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B8DABE90>]}
+[0m18:13:39.585093 [debug] [MainThread]: Using duckdb connection "master"
+[0m18:13:39.586167 [debug] [MainThread]: On master: BEGIN
+[0m18:13:39.586167 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:13:39.600095 [debug] [MainThread]: SQL status: OK in 0.014 seconds
+[0m18:13:39.601095 [debug] [MainThread]: On master: COMMIT
+[0m18:13:39.602099 [debug] [MainThread]: Using duckdb connection "master"
+[0m18:13:39.602099 [debug] [MainThread]: On master: COMMIT
+[0m18:13:39.603101 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m18:13:39.603101 [debug] [MainThread]: On master: Close
+[0m18:13:39.613094 [debug] [Thread-1 (]: Began running node model.lakehouse_enem.gld_desempenho_renda
+[0m18:13:39.613094 [debug] [Thread-2 (]: Began running node model.lakehouse_enem.gld_desempenho_uf
+[0m18:13:39.614094 [info ] [Thread-1 (]: 1 of 3 START sql view model main.gld_desempenho_renda .......................... [RUN]
+[0m18:13:39.615091 [info ] [Thread-2 (]: 2 of 3 START sql view model main.gld_desempenho_uf ............................. [RUN]
+[0m18:13:39.616091 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.lakehouse_enem.gld_desempenho_renda'
+[0m18:13:39.617095 [debug] [Thread-2 (]: Acquiring new duckdb connection 'model.lakehouse_enem.gld_desempenho_uf'
+[0m18:13:39.618096 [debug] [Thread-1 (]: Began compiling node model.lakehouse_enem.gld_desempenho_renda
+[0m18:13:39.618096 [debug] [Thread-2 (]: Began compiling node model.lakehouse_enem.gld_desempenho_uf
+[0m18:13:39.626090 [debug] [Thread-1 (]: Writing injected SQL for node "model.lakehouse_enem.gld_desempenho_renda"
+[0m18:13:39.630097 [debug] [Thread-2 (]: Writing injected SQL for node "model.lakehouse_enem.gld_desempenho_uf"
+[0m18:13:39.633097 [debug] [Thread-1 (]: Began executing node model.lakehouse_enem.gld_desempenho_renda
+[0m18:13:39.634097 [debug] [Thread-2 (]: Began executing node model.lakehouse_enem.gld_desempenho_uf
+[0m18:13:39.665672 [debug] [Thread-1 (]: Writing runtime sql for node "model.lakehouse_enem.gld_desempenho_renda"
+[0m18:13:39.670611 [debug] [Thread-2 (]: Writing runtime sql for node "model.lakehouse_enem.gld_desempenho_uf"
+[0m18:13:39.674621 [debug] [Thread-1 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_renda"
+[0m18:13:39.675612 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_uf"
+[0m18:13:39.675612 [debug] [Thread-1 (]: On model.lakehouse_enem.gld_desempenho_renda: BEGIN
+[0m18:13:39.676612 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_desempenho_uf: BEGIN
+[0m18:13:39.676612 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m18:13:39.677619 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m18:13:39.692620 [debug] [Thread-1 (]: SQL status: OK in 0.016 seconds
+[0m18:13:39.692620 [debug] [Thread-2 (]: SQL status: OK in 0.016 seconds
+[0m18:13:39.693619 [debug] [Thread-1 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_renda"
+[0m18:13:39.694612 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_uf"
+[0m18:13:39.695612 [debug] [Thread-1 (]: On model.lakehouse_enem.gld_desempenho_renda: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "model.lakehouse_enem.gld_desempenho_renda"} */
+
+  
+  create view "lakehouse"."main"."gld_desempenho_renda__dbt_tmp" as (
+    -- models/gold/gld_desempenho_renda.sql
+-- Desempenho por faixa de renda e tipo de escola
+-- Revela desigualdade educacional — narrativa forte para portfolio
+
+SELECT
+    ano,
+    grupo_renda,
+    tp_escola,
+    fl_escola_publica,
+    COUNT(*)                                AS total_candidatos,
+    ROUND(AVG(media_geral), 2)              AS media_geral,
+    ROUND(AVG(nu_nota_redacao), 2)          AS media_redacao,
+    ROUND(AVG(nu_nota_mt), 2)               AS media_matematica,
+    ROUND(AVG(percentil_nacional), 2)       AS percentil_medio,
+    ROUND(
+        100.0 * SUM(CASE WHEN faixa_desempenho IN ('Excelente','Bom') THEN 1 ELSE 0 END) / COUNT(*), 1
+    )                                       AS pct_bom_ou_excelente
+
+FROM "lakehouse"."silver"."enem"
+WHERE media_geral IS NOT NULL
+GROUP BY 1, 2, 3, 4
+ORDER BY ano, grupo_renda, media_geral DESC
+  );
+
+[0m18:13:39.695612 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_desempenho_uf: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "model.lakehouse_enem.gld_desempenho_uf"} */
+
+  
+  create view "lakehouse"."main"."gld_desempenho_uf__dbt_tmp" as (
+    -- models/gold/gld_desempenho_uf.sql
+-- Agrega desempenho médio por UF e ano
+-- Demonstra que o dbt consome o Silver diretamente do DuckDB (que lê o Parquet do Delta Lake)
+
+SELECT
+    sg_uf_residencia                        AS uf,
+    regiao,
+    ano,
+    COUNT(*)                                AS total_candidatos,
+    ROUND(AVG(media_geral), 2)              AS media_geral,
+    ROUND(AVG(nu_nota_redacao), 2)          AS media_redacao,
+    ROUND(AVG(nu_nota_mt), 2)               AS media_matematica,
+    ROUND(AVG(nu_nota_cn), 2)               AS media_ciencias,
+    ROUND(AVG(nu_nota_ch), 2)               AS media_humanas,
+    ROUND(AVG(nu_nota_lc), 2)               AS media_linguagens,
+    ROUND(AVG(percentil_nacional), 2)       AS percentil_medio,
+    SUM(fl_escola_publica)                  AS n_escola_publica,
+    ROUND(
+        100.0 * SUM(fl_escola_publica) / COUNT(*), 1
+    )                                       AS pct_escola_publica,
+    ROUND(
+        100.0 * SUM(CASE WHEN faixa_desempenho = 'Excelente' THEN 1 ELSE 0 END) / COUNT(*), 1
+    )                                       AS pct_excelente
+
+FROM "lakehouse"."silver"."enem"
+WHERE media_geral IS NOT NULL
+GROUP BY 1, 2, 3
+ORDER BY ano, media_geral DESC
+  );
+
+[0m18:13:39.700610 [debug] [Thread-1 (]: SQL status: OK in 0.004 seconds
+[0m18:13:39.700610 [debug] [Thread-2 (]: SQL status: OK in 0.003 seconds
+[0m18:13:39.707622 [debug] [Thread-1 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_renda"
+[0m18:13:39.711617 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_uf"
+[0m18:13:39.712623 [debug] [Thread-1 (]: On model.lakehouse_enem.gld_desempenho_renda: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "model.lakehouse_enem.gld_desempenho_renda"} */
+alter view "lakehouse"."main"."gld_desempenho_renda__dbt_tmp" rename to "gld_desempenho_renda"
+[0m18:13:39.713617 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_desempenho_uf: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "model.lakehouse_enem.gld_desempenho_uf"} */
+alter view "lakehouse"."main"."gld_desempenho_uf__dbt_tmp" rename to "gld_desempenho_uf"
+[0m18:13:39.714624 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m18:13:39.714624 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m18:13:39.729683 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_desempenho_uf: COMMIT
+[0m18:13:39.731683 [debug] [Thread-1 (]: On model.lakehouse_enem.gld_desempenho_renda: COMMIT
+[0m18:13:39.732683 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_uf"
+[0m18:13:39.733677 [debug] [Thread-1 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_renda"
+[0m18:13:39.733677 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_desempenho_uf: COMMIT
+[0m18:13:39.734676 [debug] [Thread-1 (]: On model.lakehouse_enem.gld_desempenho_renda: COMMIT
+[0m18:13:39.784682 [debug] [Thread-2 (]: SQL status: OK in 0.050 seconds
+[0m18:13:39.791682 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_uf"
+[0m18:13:39.792676 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_desempenho_uf: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "model.lakehouse_enem.gld_desempenho_uf"} */
+drop view if exists "lakehouse"."main"."gld_desempenho_uf__dbt_backup" cascade
+[0m18:13:39.810688 [debug] [Thread-1 (]: SQL status: OK in 0.074 seconds
+[0m18:13:39.811684 [debug] [Thread-2 (]: SQL status: OK in 0.018 seconds
+[0m18:13:39.815692 [debug] [Thread-1 (]: Using duckdb connection "model.lakehouse_enem.gld_desempenho_renda"
+[0m18:13:39.817692 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_desempenho_uf: Close
+[0m18:13:39.818692 [debug] [Thread-1 (]: On model.lakehouse_enem.gld_desempenho_renda: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "model.lakehouse_enem.gld_desempenho_renda"} */
+drop view if exists "lakehouse"."main"."gld_desempenho_renda__dbt_backup" cascade
+[0m18:13:39.822687 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m18:13:39.823693 [debug] [Thread-1 (]: On model.lakehouse_enem.gld_desempenho_renda: Close
+[0m18:13:39.831702 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B8AC0110>]}
+[0m18:13:39.832705 [info ] [Thread-2 (]: 2 of 3 OK created sql view model main.gld_desempenho_uf ........................ [[32mOK[0m in 0.20s]
+[0m18:13:39.834699 [debug] [Thread-2 (]: Finished running node model.lakehouse_enem.gld_desempenho_uf
+[0m18:13:39.834699 [debug] [Thread-2 (]: Began running node model.lakehouse_enem.gld_evolucao_anual
+[0m18:13:39.835706 [info ] [Thread-2 (]: 3 of 3 START sql view model main.gld_evolucao_anual ............................ [RUN]
+[0m18:13:39.836703 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.lakehouse_enem.gld_desempenho_uf, now model.lakehouse_enem.gld_evolucao_anual)
+[0m18:13:39.837702 [debug] [Thread-2 (]: Began compiling node model.lakehouse_enem.gld_evolucao_anual
+[0m18:13:39.840698 [debug] [Thread-2 (]: Writing injected SQL for node "model.lakehouse_enem.gld_evolucao_anual"
+[0m18:13:39.841699 [debug] [Thread-2 (]: Began executing node model.lakehouse_enem.gld_evolucao_anual
+[0m18:13:39.847218 [debug] [Thread-2 (]: Writing runtime sql for node "model.lakehouse_enem.gld_evolucao_anual"
+[0m18:13:39.849218 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_evolucao_anual"
+[0m18:13:39.850217 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_evolucao_anual: BEGIN
+[0m18:13:39.851245 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m18:13:40.456809 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3BA129650>]}
+[0m18:13:40.458810 [info ] [Thread-1 (]: 1 of 3 OK created sql view model main.gld_desempenho_renda ..................... [[32mOK[0m in 0.84s]
+[0m18:13:40.459818 [debug] [Thread-1 (]: Finished running node model.lakehouse_enem.gld_desempenho_renda
+[0m18:13:40.479806 [debug] [Thread-2 (]: SQL status: OK in 0.628 seconds
+[0m18:13:40.480814 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_evolucao_anual"
+[0m18:13:40.480814 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_evolucao_anual: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "model.lakehouse_enem.gld_evolucao_anual"} */
+
+  
+  create view "lakehouse"."main"."gld_evolucao_anual__dbt_tmp" as (
+    -- models/gold/gld_evolucao_anual.sql
+-- Evolução anual do desempenho — mostra tendências entre anos
+-- Usa window function para calcular variação YoY diretamente no dbt
+
+WITH base AS (
+    SELECT
+        ano,
+        regiao,
+        ROUND(AVG(media_geral), 2)      AS media_geral,
+        ROUND(AVG(nu_nota_redacao), 2)  AS media_redacao,
+        ROUND(AVG(nu_nota_mt), 2)       AS media_matematica,
+        COUNT(*)                         AS n_candidatos
+    FROM "lakehouse"."silver"."enem"
+    WHERE media_geral IS NOT NULL
+    GROUP BY ano, regiao
+)
+
+SELECT
+    ano,
+    regiao,
+    n_candidatos,
+    media_geral,
+    media_redacao,
+    media_matematica,
+    LAG(media_geral) OVER (PARTITION BY regiao ORDER BY ano)  AS media_geral_ano_anterior,
+    ROUND(
+        media_geral - LAG(media_geral) OVER (PARTITION BY regiao ORDER BY ano), 2
+    )                                                          AS variacao_yoy,
+    ROUND(
+        100.0 * (media_geral - LAG(media_geral) OVER (PARTITION BY regiao ORDER BY ano))
+        / NULLIF(LAG(media_geral) OVER (PARTITION BY regiao ORDER BY ano), 0), 1
+    )                                                          AS variacao_yoy_pct
+
+FROM base
+ORDER BY regiao, ano
+  );
+
+[0m18:13:40.483813 [debug] [Thread-2 (]: SQL status: OK in 0.002 seconds
+[0m18:13:40.487810 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_evolucao_anual"
+[0m18:13:40.488809 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_evolucao_anual: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "model.lakehouse_enem.gld_evolucao_anual"} */
+alter view "lakehouse"."main"."gld_evolucao_anual__dbt_tmp" rename to "gld_evolucao_anual"
+[0m18:13:40.491168 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m18:13:40.493166 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_evolucao_anual: COMMIT
+[0m18:13:40.494170 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_evolucao_anual"
+[0m18:13:40.495166 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_evolucao_anual: COMMIT
+[0m18:13:40.544339 [debug] [Thread-2 (]: SQL status: OK in 0.048 seconds
+[0m18:13:40.552326 [debug] [Thread-2 (]: Using duckdb connection "model.lakehouse_enem.gld_evolucao_anual"
+[0m18:13:40.554324 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_evolucao_anual: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "model.lakehouse_enem.gld_evolucao_anual"} */
+drop view if exists "lakehouse"."main"."gld_evolucao_anual__dbt_backup" cascade
+[0m18:13:40.555334 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m18:13:40.557340 [debug] [Thread-2 (]: On model.lakehouse_enem.gld_evolucao_anual: Close
+[0m18:13:40.858638 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '0338fbcd-5705-4eb8-8ddc-f9439ba112d6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B4014890>]}
+[0m18:13:40.860640 [info ] [Thread-2 (]: 3 of 3 OK created sql view model main.gld_evolucao_anual ....................... [[32mOK[0m in 1.02s]
+[0m18:13:40.862648 [debug] [Thread-2 (]: Finished running node model.lakehouse_enem.gld_evolucao_anual
+[0m18:13:40.864638 [debug] [MainThread]: Using duckdb connection "master"
+[0m18:13:40.865636 [debug] [MainThread]: On master: BEGIN
+[0m18:13:40.865636 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m18:13:40.889930 [debug] [MainThread]: SQL status: OK in 0.024 seconds
+[0m18:13:40.890926 [debug] [MainThread]: On master: COMMIT
+[0m18:13:40.890926 [debug] [MainThread]: Using duckdb connection "master"
+[0m18:13:40.891926 [debug] [MainThread]: On master: COMMIT
+[0m18:13:40.892926 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m18:13:40.892926 [debug] [MainThread]: On master: Close
+[0m18:13:40.895929 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m18:13:40.896927 [debug] [MainThread]: Connection 'create_lakehouse_main' was properly closed.
+[0m18:13:40.896927 [debug] [MainThread]: Connection 'list_lakehouse_main' was properly closed.
+[0m18:13:40.897928 [debug] [MainThread]: Connection 'model.lakehouse_enem.gld_desempenho_renda' was properly closed.
+[0m18:13:40.897928 [debug] [MainThread]: Connection 'model.lakehouse_enem.gld_evolucao_anual' was properly closed.
+[0m18:13:40.898933 [info ] [MainThread]: 
+[0m18:13:40.899926 [info ] [MainThread]: Finished running 3 view models in 0 hours 0 minutes and 4.60 seconds (4.60s).
+[0m18:13:40.900935 [debug] [MainThread]: Command end result
+[0m18:13:40.929307 [debug] [MainThread]: Wrote artifact WritableManifest to .\target\manifest.json
+[0m18:13:40.932818 [debug] [MainThread]: Wrote artifact SemanticManifest to .\target\semantic_manifest.json
+[0m18:13:40.940814 [debug] [MainThread]: Wrote artifact RunExecutionResult to .\target\run_results.json
+[0m18:13:40.940814 [info ] [MainThread]: 
+[0m18:13:40.941815 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m18:13:40.942823 [info ] [MainThread]: 
+[0m18:13:40.943813 [info ] [MainThread]: Done. PASS=3 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=3
+[0m18:13:40.945814 [debug] [MainThread]: Command `dbt run` succeeded at 18:13:40.944816 after 8.14 seconds
+[0m18:13:40.945814 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B1E51C50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B894D590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B3B1E51E90>]}
+[0m18:13:40.946810 [debug] [MainThread]: Flushing usage events
+[0m18:13:41.853066 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:13:44.195401 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD2FE63110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD2FDF5650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD2FE626D0>]}
+
+
+============================== 18:13:44.200407 | ad38aee8-0438-430e-bfa3-32e43277725f ==============================
+[0m18:13:44.200407 [info ] [MainThread]: Running with dbt=1.11.7
+[0m18:13:44.201401 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt test --profiles-dir . --project-dir .', 'log_format': 'default', 'no_print': 'None', 'printer_width': '80', 'target_path': 'None', 'warn_error': 'None', 'indirect_selection': 'eager', 'partial_parse': 'True', 'log_path': 'logs', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'introspect': 'True', 'quiet': 'False', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'profiles_dir': '.', 'use_colors': 'True', 'cache_selected_only': 'False', 'write_json': 'True'}
+[0m18:13:44.429998 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ad38aee8-0438-430e-bfa3-32e43277725f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD2FE60C10>]}
+[0m18:13:44.481515 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ad38aee8-0438-430e-bfa3-32e43277725f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD2BAF8AD0>]}
+[0m18:13:44.483516 [info ] [MainThread]: Registered adapter: duckdb=1.8.1
+[0m18:13:44.843272 [debug] [MainThread]: checksum: b80718358155fc17c3559352095564dd56ada1cc1a1c0ef2e62c857e71583775, vars: {}, profile: , target: , version: 1.11.7
+[0m18:13:44.994871 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m18:13:44.994871 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m18:13:44.995873 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m18:13:45.035872 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ad38aee8-0438-430e-bfa3-32e43277725f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD31440650>]}
+[0m18:13:45.116395 [debug] [MainThread]: Wrote artifact WritableManifest to .\target\manifest.json
+[0m18:13:45.118459 [debug] [MainThread]: Wrote artifact SemanticManifest to .\target\semantic_manifest.json
+[0m18:13:45.165937 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'ad38aee8-0438-430e-bfa3-32e43277725f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD31432090>]}
+[0m18:13:45.166937 [info ] [MainThread]: Found 3 models, 11 data tests, 1 source, 571 macros
+[0m18:13:45.167937 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ad38aee8-0438-430e-bfa3-32e43277725f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD2FEB6710>]}
+[0m18:13:45.169946 [info ] [MainThread]: 
+[0m18:13:45.170937 [info ] [MainThread]: Concurrency: 2 threads (target='dev')
+[0m18:13:45.171939 [info ] [MainThread]: 
+[0m18:13:45.171939 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m18:13:45.177943 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_lakehouse_main'
+[0m18:13:45.310483 [debug] [ThreadPool]: Using duckdb connection "list_lakehouse_main"
+[0m18:13:45.311485 [debug] [ThreadPool]: On list_lakehouse_main: BEGIN
+[0m18:13:45.311485 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:13:45.327494 [debug] [ThreadPool]: SQL status: OK in 0.015 seconds
+[0m18:13:45.328495 [debug] [ThreadPool]: Using duckdb connection "list_lakehouse_main"
+[0m18:13:45.329494 [debug] [ThreadPool]: On list_lakehouse_main: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "connection_name": "list_lakehouse_main"} */
+select
+      'lakehouse' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where table_schema = 'main'
+    and table_catalog = 'lakehouse'
+  
+[0m18:13:45.345522 [debug] [ThreadPool]: SQL status: OK in 0.015 seconds
+[0m18:13:45.346522 [debug] [ThreadPool]: On list_lakehouse_main: ROLLBACK
+[0m18:13:45.348523 [debug] [ThreadPool]: Failed to rollback 'list_lakehouse_main'
+[0m18:13:45.348523 [debug] [ThreadPool]: On list_lakehouse_main: Close
+[0m18:13:45.353525 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ad38aee8-0438-430e-bfa3-32e43277725f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD313D2950>]}
+[0m18:13:45.354526 [debug] [MainThread]: Using duckdb connection "master"
+[0m18:13:45.354526 [debug] [MainThread]: On master: BEGIN
+[0m18:13:45.355526 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:13:45.369523 [debug] [MainThread]: SQL status: OK in 0.014 seconds
+[0m18:13:45.370525 [debug] [MainThread]: On master: COMMIT
+[0m18:13:45.370525 [debug] [MainThread]: Using duckdb connection "master"
+[0m18:13:45.371526 [debug] [MainThread]: On master: COMMIT
+[0m18:13:45.372524 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m18:13:45.372524 [debug] [MainThread]: On master: Close
+[0m18:13:45.379523 [debug] [Thread-1 (]: Began running node test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582
+[0m18:13:45.380592 [debug] [Thread-2 (]: Began running node test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5
+[0m18:13:45.380592 [info ] [Thread-1 (]: 1 of 11 START test accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta  [RUN]
+[0m18:13:45.381595 [info ] [Thread-2 (]: 2 of 11 START test dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0  [RUN]
+[0m18:13:45.382524 [debug] [Thread-1 (]: Acquiring new duckdb connection 'test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582'
+[0m18:13:45.383522 [debug] [Thread-2 (]: Acquiring new duckdb connection 'test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5'
+[0m18:13:45.383522 [debug] [Thread-1 (]: Began compiling node test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582
+[0m18:13:45.384529 [debug] [Thread-2 (]: Began compiling node test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5
+[0m18:13:45.399525 [debug] [Thread-1 (]: Writing injected SQL for node "test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582"
+[0m18:13:45.408522 [debug] [Thread-2 (]: Writing injected SQL for node "test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5"
+[0m18:13:45.411523 [debug] [Thread-1 (]: Began executing node test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582
+[0m18:13:45.412524 [debug] [Thread-2 (]: Began executing node test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5
+[0m18:13:45.431597 [debug] [Thread-1 (]: Writing runtime sql for node "test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582"
+[0m18:13:45.434605 [debug] [Thread-2 (]: Writing runtime sql for node "test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5"
+[0m18:13:45.436599 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582"
+[0m18:13:45.437608 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5"
+[0m18:13:45.438525 [debug] [Thread-1 (]: On test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582: BEGIN
+[0m18:13:45.439524 [debug] [Thread-2 (]: On test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5: BEGIN
+[0m18:13:45.440523 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m18:13:45.440523 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m18:13:45.454673 [debug] [Thread-1 (]: SQL status: OK in 0.015 seconds
+[0m18:13:45.455662 [debug] [Thread-2 (]: SQL status: OK in 0.015 seconds
+[0m18:13:45.455662 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582"
+[0m18:13:45.456660 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5"
+[0m18:13:45.457598 [debug] [Thread-1 (]: On test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with all_values as (
+
+    select
+        grupo_renda as value_field,
+        count(*) as n_records
+
+    from "lakehouse"."main"."gld_desempenho_renda"
+    group by grupo_renda
+
+)
+
+select *
+from all_values
+where value_field not in (
+    'Baixa','Média','Alta'
+)
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:45.457598 [debug] [Thread-2 (]: On test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+
+with meet_condition as(
+  select *
+  from "lakehouse"."main"."gld_desempenho_uf"
+),
+
+validation_errors as (
+  select *
+  from meet_condition
+  where
+    -- never true, defaults to an empty result set. Exists to ensure any combo of the `or` clauses below succeeds
+    1 = 2
+    -- records with a value >= min_value are permitted. The `not` flips this to find records that don't meet the rule.
+    or not pct_escola_publica >= 0
+    -- records with a value <= max_value are permitted. The `not` flips this to find records that don't meet the rule.
+    or not pct_escola_publica <= 100
+)
+
+select *
+from validation_errors
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:45.470773 [debug] [Thread-1 (]: SQL status: OK in 0.012 seconds
+[0m18:13:45.475774 [debug] [Thread-1 (]: On test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582: ROLLBACK
+[0m18:13:45.477774 [debug] [Thread-1 (]: Failed to rollback 'test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582'
+[0m18:13:45.478773 [debug] [Thread-1 (]: On test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582: Close
+[0m18:13:45.479773 [debug] [Thread-2 (]: SQL status: OK in 0.021 seconds
+[0m18:13:45.479773 [info ] [Thread-1 (]: 1 of 11 PASS accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta  [[32mPASS[0m in 0.10s]
+[0m18:13:45.481776 [debug] [Thread-2 (]: On test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5: ROLLBACK
+[0m18:13:45.482776 [debug] [Thread-1 (]: Finished running node test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582
+[0m18:13:45.483774 [debug] [Thread-2 (]: Failed to rollback 'test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5'
+[0m18:13:45.483774 [debug] [Thread-1 (]: Began running node test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a
+[0m18:13:45.484773 [debug] [Thread-2 (]: On test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5: Close
+[0m18:13:45.484773 [info ] [Thread-1 (]: 3 of 11 START test not_null_gld_desempenho_renda_grupo_renda ................... [RUN]
+[0m18:13:45.485774 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.lakehouse_enem.accepted_values_gld_desempenho_renda_grupo_renda__Baixa__M_dia__Alta.43387b6582, now test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a)
+[0m18:13:45.487775 [debug] [Thread-1 (]: Began compiling node test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a
+[0m18:13:45.495776 [debug] [Thread-1 (]: Writing injected SQL for node "test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a"
+[0m18:13:45.496775 [info ] [Thread-2 (]: 2 of 11 PASS dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0  [[32mPASS[0m in 0.11s]
+[0m18:13:45.497774 [debug] [Thread-2 (]: Finished running node test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5
+[0m18:13:45.498861 [debug] [Thread-1 (]: Began executing node test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a
+[0m18:13:45.499860 [debug] [Thread-2 (]: Began running node test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084
+[0m18:13:45.502774 [debug] [Thread-1 (]: Writing runtime sql for node "test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a"
+[0m18:13:45.503776 [info ] [Thread-2 (]: 4 of 11 START test not_null_gld_desempenho_renda_media_geral ................... [RUN]
+[0m18:13:45.504833 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.lakehouse_enem.dbt_utils_accepted_range_gld_desempenho_uf_pct_escola_publica__100__0.bbcf6bd4d5, now test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084)
+[0m18:13:45.505778 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a"
+[0m18:13:45.506774 [debug] [Thread-2 (]: Began compiling node test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084
+[0m18:13:45.506774 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a: BEGIN
+[0m18:13:45.511774 [debug] [Thread-2 (]: Writing injected SQL for node "test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084"
+[0m18:13:45.512774 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m18:13:45.513776 [debug] [Thread-2 (]: Began executing node test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084
+[0m18:13:45.517854 [debug] [Thread-2 (]: Writing runtime sql for node "test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084"
+[0m18:13:45.520779 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084"
+[0m18:13:45.521780 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084: BEGIN
+[0m18:13:45.522784 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m18:13:45.530793 [debug] [Thread-1 (]: SQL status: OK in 0.018 seconds
+[0m18:13:45.531785 [debug] [Thread-2 (]: SQL status: OK in 0.009 seconds
+[0m18:13:45.531785 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a"
+[0m18:13:45.532786 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084"
+[0m18:13:45.533778 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select grupo_renda
+from "lakehouse"."main"."gld_desempenho_renda"
+where grupo_renda is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:45.533778 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select media_geral
+from "lakehouse"."main"."gld_desempenho_renda"
+where media_geral is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:45.541082 [debug] [Thread-1 (]: SQL status: OK in 0.007 seconds
+[0m18:13:45.545084 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a: ROLLBACK
+[0m18:13:45.546260 [debug] [Thread-2 (]: SQL status: OK in 0.011 seconds
+[0m18:13:45.547247 [debug] [Thread-1 (]: Failed to rollback 'test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a'
+[0m18:13:45.548249 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084: ROLLBACK
+[0m18:13:45.549256 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a: Close
+[0m18:13:45.550248 [debug] [Thread-2 (]: Failed to rollback 'test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084'
+[0m18:13:45.550248 [info ] [Thread-1 (]: 3 of 11 PASS not_null_gld_desempenho_renda_grupo_renda ......................... [[32mPASS[0m in 0.06s]
+[0m18:13:45.551255 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084: Close
+[0m18:13:45.552248 [debug] [Thread-1 (]: Finished running node test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a
+[0m18:13:45.553248 [debug] [Thread-1 (]: Began running node test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921
+[0m18:13:45.553248 [info ] [Thread-1 (]: 5 of 11 START test not_null_gld_desempenho_uf_ano .............................. [RUN]
+[0m18:13:45.554252 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.lakehouse_enem.not_null_gld_desempenho_renda_grupo_renda.96079ba13a, now test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921)
+[0m18:13:45.556251 [info ] [Thread-2 (]: 4 of 11 PASS not_null_gld_desempenho_renda_media_geral ......................... [[32mPASS[0m in 0.05s]
+[0m18:13:45.556251 [debug] [Thread-1 (]: Began compiling node test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921
+[0m18:13:45.558250 [debug] [Thread-2 (]: Finished running node test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084
+[0m18:13:45.562251 [debug] [Thread-1 (]: Writing injected SQL for node "test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921"
+[0m18:13:45.563256 [debug] [Thread-2 (]: Began running node test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda
+[0m18:13:45.564259 [info ] [Thread-2 (]: 6 of 11 START test not_null_gld_desempenho_uf_media_geral ...................... [RUN]
+[0m18:13:45.564259 [debug] [Thread-1 (]: Began executing node test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921
+[0m18:13:45.565256 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.lakehouse_enem.not_null_gld_desempenho_renda_media_geral.f1871f1084, now test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda)
+[0m18:13:45.568255 [debug] [Thread-1 (]: Writing runtime sql for node "test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921"
+[0m18:13:45.568255 [debug] [Thread-2 (]: Began compiling node test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda
+[0m18:13:45.574265 [debug] [Thread-2 (]: Writing injected SQL for node "test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda"
+[0m18:13:45.575248 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921"
+[0m18:13:45.576256 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921: BEGIN
+[0m18:13:45.576256 [debug] [Thread-2 (]: Began executing node test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda
+[0m18:13:45.577250 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m18:13:45.580255 [debug] [Thread-2 (]: Writing runtime sql for node "test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda"
+[0m18:13:45.581257 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda"
+[0m18:13:45.582248 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda: BEGIN
+[0m18:13:45.583256 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m18:13:45.595251 [debug] [Thread-1 (]: SQL status: OK in 0.017 seconds
+[0m18:13:45.595251 [debug] [Thread-2 (]: SQL status: OK in 0.012 seconds
+[0m18:13:45.596250 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921"
+[0m18:13:45.596250 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda"
+[0m18:13:45.597317 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select ano
+from "lakehouse"."main"."gld_desempenho_uf"
+where ano is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:45.597317 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select media_geral
+from "lakehouse"."main"."gld_desempenho_uf"
+where media_geral is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:45.607249 [debug] [Thread-1 (]: SQL status: OK in 0.009 seconds
+[0m18:13:45.610250 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921: ROLLBACK
+[0m18:13:45.611251 [debug] [Thread-2 (]: SQL status: OK in 0.012 seconds
+[0m18:13:45.612250 [debug] [Thread-1 (]: Failed to rollback 'test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921'
+[0m18:13:45.615290 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda: ROLLBACK
+[0m18:13:45.615290 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921: Close
+[0m18:13:45.617250 [debug] [Thread-2 (]: Failed to rollback 'test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda'
+[0m18:13:45.618250 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda: Close
+[0m18:13:45.618250 [info ] [Thread-1 (]: 5 of 11 PASS not_null_gld_desempenho_uf_ano .................................... [[32mPASS[0m in 0.06s]
+[0m18:13:45.620251 [debug] [Thread-1 (]: Finished running node test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921
+[0m18:13:45.621251 [debug] [Thread-1 (]: Began running node test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f
+[0m18:13:45.622249 [info ] [Thread-1 (]: 7 of 11 START test not_null_gld_desempenho_uf_pct_escola_publica ............... [RUN]
+[0m18:13:45.623670 [info ] [Thread-2 (]: 6 of 11 PASS not_null_gld_desempenho_uf_media_geral ............................ [[32mPASS[0m in 0.06s]
+[0m18:13:45.624675 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.lakehouse_enem.not_null_gld_desempenho_uf_ano.3aa3394921, now test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f)
+[0m18:13:45.625674 [debug] [Thread-2 (]: Finished running node test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda
+[0m18:13:45.625674 [debug] [Thread-1 (]: Began compiling node test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f
+[0m18:13:45.626683 [debug] [Thread-2 (]: Began running node test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377
+[0m18:13:45.630681 [debug] [Thread-1 (]: Writing injected SQL for node "test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f"
+[0m18:13:45.630681 [info ] [Thread-2 (]: 8 of 11 START test not_null_gld_desempenho_uf_total_candidatos ................. [RUN]
+[0m18:13:45.631682 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.lakehouse_enem.not_null_gld_desempenho_uf_media_geral.ca5f7fcdda, now test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377)
+[0m18:13:45.632682 [debug] [Thread-2 (]: Began compiling node test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377
+[0m18:13:45.638674 [debug] [Thread-2 (]: Writing injected SQL for node "test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377"
+[0m18:13:45.887670 [debug] [Thread-1 (]: Began executing node test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f
+[0m18:13:45.888662 [debug] [Thread-2 (]: Began executing node test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377
+[0m18:13:45.896655 [debug] [Thread-1 (]: Writing runtime sql for node "test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f"
+[0m18:13:45.903662 [debug] [Thread-2 (]: Writing runtime sql for node "test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377"
+[0m18:13:45.906655 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f"
+[0m18:13:45.906655 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f: BEGIN
+[0m18:13:45.907655 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377"
+[0m18:13:45.907655 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m18:13:45.908656 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377: BEGIN
+[0m18:13:45.909668 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m18:13:45.928677 [debug] [Thread-1 (]: SQL status: OK in 0.021 seconds
+[0m18:13:45.929678 [debug] [Thread-2 (]: SQL status: OK in 0.020 seconds
+[0m18:13:45.930670 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f"
+[0m18:13:45.931679 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377"
+[0m18:13:45.932671 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select pct_escola_publica
+from "lakehouse"."main"."gld_desempenho_uf"
+where pct_escola_publica is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:45.933682 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select total_candidatos
+from "lakehouse"."main"."gld_desempenho_uf"
+where total_candidatos is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:45.947704 [debug] [Thread-2 (]: SQL status: OK in 0.013 seconds
+[0m18:13:45.948718 [debug] [Thread-1 (]: SQL status: OK in 0.014 seconds
+[0m18:13:45.949705 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377: ROLLBACK
+[0m18:13:45.951713 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f: ROLLBACK
+[0m18:13:45.951713 [debug] [Thread-2 (]: Failed to rollback 'test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377'
+[0m18:13:45.952707 [debug] [Thread-1 (]: Failed to rollback 'test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f'
+[0m18:13:45.953722 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377: Close
+[0m18:13:45.953722 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f: Close
+[0m18:13:45.954711 [info ] [Thread-2 (]: 8 of 11 PASS not_null_gld_desempenho_uf_total_candidatos ....................... [[32mPASS[0m in 0.32s]
+[0m18:13:45.955704 [debug] [Thread-2 (]: Finished running node test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377
+[0m18:13:45.956711 [debug] [Thread-2 (]: Began running node test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8
+[0m18:13:45.956711 [info ] [Thread-2 (]: 9 of 11 START test not_null_gld_desempenho_uf_uf ............................... [RUN]
+[0m18:13:45.957707 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.lakehouse_enem.not_null_gld_desempenho_uf_total_candidatos.0ff0978377, now test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8)
+[0m18:13:45.958711 [debug] [Thread-2 (]: Began compiling node test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8
+[0m18:13:45.958711 [info ] [Thread-1 (]: 7 of 11 PASS not_null_gld_desempenho_uf_pct_escola_publica ..................... [[32mPASS[0m in 0.33s]
+[0m18:13:45.962711 [debug] [Thread-2 (]: Writing injected SQL for node "test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8"
+[0m18:13:45.963711 [debug] [Thread-1 (]: Finished running node test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f
+[0m18:13:45.964706 [debug] [Thread-1 (]: Began running node test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3
+[0m18:13:45.965705 [debug] [Thread-2 (]: Began executing node test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8
+[0m18:13:45.965705 [info ] [Thread-1 (]: 10 of 11 START test not_null_gld_evolucao_anual_ano ............................ [RUN]
+[0m18:13:45.969712 [debug] [Thread-2 (]: Writing runtime sql for node "test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8"
+[0m18:13:45.970705 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.lakehouse_enem.not_null_gld_desempenho_uf_pct_escola_publica.fe60692d2f, now test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3)
+[0m18:13:45.971709 [debug] [Thread-1 (]: Began compiling node test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3
+[0m18:13:45.972706 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8"
+[0m18:13:45.976705 [debug] [Thread-1 (]: Writing injected SQL for node "test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3"
+[0m18:13:45.977705 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8: BEGIN
+[0m18:13:45.978704 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m18:13:45.978704 [debug] [Thread-1 (]: Began executing node test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3
+[0m18:13:45.982712 [debug] [Thread-1 (]: Writing runtime sql for node "test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3"
+[0m18:13:45.984704 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3"
+[0m18:13:45.985714 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3: BEGIN
+[0m18:13:45.986704 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m18:13:45.996710 [debug] [Thread-2 (]: SQL status: OK in 0.019 seconds
+[0m18:13:45.997704 [debug] [Thread-1 (]: SQL status: OK in 0.011 seconds
+[0m18:13:45.998711 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8"
+[0m18:13:45.998711 [debug] [Thread-1 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3"
+[0m18:13:45.999704 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select uf
+from "lakehouse"."main"."gld_desempenho_uf"
+where uf is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:45.999704 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select ano
+from "lakehouse"."main"."gld_evolucao_anual"
+where ano is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:46.006705 [debug] [Thread-2 (]: SQL status: OK in 0.006 seconds
+[0m18:13:46.009706 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8: ROLLBACK
+[0m18:13:46.011706 [debug] [Thread-2 (]: Failed to rollback 'test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8'
+[0m18:13:46.012705 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8: Close
+[0m18:13:46.013712 [info ] [Thread-2 (]: 9 of 11 PASS not_null_gld_desempenho_uf_uf ..................................... [[32mPASS[0m in 0.05s]
+[0m18:13:46.014705 [debug] [Thread-2 (]: Finished running node test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8
+[0m18:13:46.014705 [debug] [Thread-2 (]: Began running node test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105
+[0m18:13:46.015705 [info ] [Thread-2 (]: 11 of 11 START test not_null_gld_evolucao_anual_regiao ......................... [RUN]
+[0m18:13:46.016705 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.lakehouse_enem.not_null_gld_desempenho_uf_uf.a1b512fac8, now test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105)
+[0m18:13:46.016705 [debug] [Thread-2 (]: Began compiling node test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105
+[0m18:13:46.020704 [debug] [Thread-2 (]: Writing injected SQL for node "test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105"
+[0m18:13:46.022705 [debug] [Thread-2 (]: Began executing node test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105
+[0m18:13:46.025706 [debug] [Thread-2 (]: Writing runtime sql for node "test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105"
+[0m18:13:46.027716 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105"
+[0m18:13:46.028704 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105: BEGIN
+[0m18:13:46.028704 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m18:13:46.030711 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m18:13:46.030711 [debug] [Thread-2 (]: Using duckdb connection "test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105"
+[0m18:13:46.031712 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "lakehouse_enem", "target_name": "dev", "node_id": "test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select regiao
+from "lakehouse"."main"."gld_evolucao_anual"
+where regiao is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m18:13:46.035705 [debug] [Thread-1 (]: SQL status: OK in 0.035 seconds
+[0m18:13:46.038705 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3: ROLLBACK
+[0m18:13:46.038705 [debug] [Thread-2 (]: SQL status: OK in 0.007 seconds
+[0m18:13:46.039705 [debug] [Thread-1 (]: Failed to rollback 'test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3'
+[0m18:13:46.042707 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105: ROLLBACK
+[0m18:13:46.043704 [debug] [Thread-1 (]: On test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3: Close
+[0m18:13:46.044704 [debug] [Thread-2 (]: Failed to rollback 'test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105'
+[0m18:13:46.045705 [debug] [Thread-2 (]: On test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105: Close
+[0m18:13:46.045705 [info ] [Thread-1 (]: 10 of 11 PASS not_null_gld_evolucao_anual_ano .................................. [[32mPASS[0m in 0.08s]
+[0m18:13:46.046705 [debug] [Thread-1 (]: Finished running node test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3
+[0m18:13:46.049719 [info ] [Thread-2 (]: 11 of 11 PASS not_null_gld_evolucao_anual_regiao ............................... [[32mPASS[0m in 0.03s]
+[0m18:13:46.050714 [debug] [Thread-2 (]: Finished running node test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105
+[0m18:13:46.052721 [debug] [MainThread]: Using duckdb connection "master"
+[0m18:13:46.053767 [debug] [MainThread]: On master: BEGIN
+[0m18:13:46.053767 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m18:13:46.070253 [debug] [MainThread]: SQL status: OK in 0.016 seconds
+[0m18:13:46.071254 [debug] [MainThread]: On master: COMMIT
+[0m18:13:46.072260 [debug] [MainThread]: Using duckdb connection "master"
+[0m18:13:46.073253 [debug] [MainThread]: On master: COMMIT
+[0m18:13:46.074253 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m18:13:46.074253 [debug] [MainThread]: On master: Close
+[0m18:13:46.078791 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m18:13:46.079872 [debug] [MainThread]: Connection 'list_lakehouse_main' was properly closed.
+[0m18:13:46.079872 [debug] [MainThread]: Connection 'test.lakehouse_enem.not_null_gld_evolucao_anual_ano.b8a78319b3' was properly closed.
+[0m18:13:46.080852 [debug] [MainThread]: Connection 'test.lakehouse_enem.not_null_gld_evolucao_anual_regiao.37e7331105' was properly closed.
+[0m18:13:46.080852 [info ] [MainThread]: 
+[0m18:13:46.081872 [info ] [MainThread]: Finished running 11 data tests in 0 hours 0 minutes and 0.91 seconds (0.91s).
+[0m18:13:46.083884 [debug] [MainThread]: Command end result
+[0m18:13:46.114796 [debug] [MainThread]: Wrote artifact WritableManifest to .\target\manifest.json
+[0m18:13:46.118796 [debug] [MainThread]: Wrote artifact SemanticManifest to .\target\semantic_manifest.json
+[0m18:13:46.125801 [debug] [MainThread]: Wrote artifact RunExecutionResult to .\target\run_results.json
+[0m18:13:46.126802 [info ] [MainThread]: 
+[0m18:13:46.127879 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m18:13:46.128878 [info ] [MainThread]: 
+[0m18:13:46.128878 [info ] [MainThread]: Done. PASS=11 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=11
+[0m18:13:46.130802 [debug] [MainThread]: Command `dbt test` succeeded at 18:13:46.130802 after 2.01 seconds
+[0m18:13:46.131389 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD2F144DD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD2AC31E90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DD2AC31C50>]}
+[0m18:13:46.132415 [debug] [MainThread]: Flushing usage events
+[0m18:13:47.154286 [debug] [MainThread]: An error was encountered while trying to flush usage events
