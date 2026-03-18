@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: silver
+    schema: silver          # schema criado pelo delta_to_duckdb.py no DuckDB
+    description: "Silver layer exportada do Delta Lake via Parquet → DuckDB"
+    tables:
+      - name: enem
+        description: "Microdados ENEM limpos e enriquecidos pelo PySpark"
+        columns:
+          - name: nu_inscricao
+            description: "Número de inscrição único por candidato"
+          - name: ano
+            description: "Ano de aplicação do ENEM"
+          - name: media_geral
+            description: "Média ponderada de todas as provas"
+          - name: percentil_nacional
+            description: "Percentil nacional — adicionado via schema evolution"

@@ -1,0 +1,46 @@
+name: Lakehouse CI
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "dbt_project/**"
+      - "spark_jobs/**"
+      - "ingestion/**"
+  pull_request:
+    branches: [main]
+
+jobs:
+  dbt-lint:
+    name: dbt parse + compile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install dbt-duckdb==1.8.1 duckdb==0.10.3
+      - run: |
+          cd dbt_project
+          dbt deps
+          dbt parse   --profiles-dir . --project-dir .
+          dbt compile --profiles-dir . --project-dir .
+
+  pipeline-full:
+    name: Pipeline completo (sem Spark)
+    runs-on: ubuntu-latest
+    needs: dbt-lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install -r requirements.txt
+      - name: Gerar dados + dbt (skip Spark no CI)
+        run: python run.py --only-pipeline --skip-spark --anos 2022
+      - name: dbt docs
+        run: |
+          cd dbt_project
+          dbt docs generate --profiles-dir . --project-dir .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dbt-docs
+          path: dbt_project/target/

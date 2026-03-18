@@ -1,7 +1,7 @@
 """
 spark_jobs/time_travel.py
-Demonstra o poder do Time Travel no Delta Lake, 
-que é a capacidade deconsultar e restaurar versões anteriores dos dados sem esforço.
+Demonstra Time Travel do Delta Lake — a feature mais impressionante
+para mostrar em entrevistas.
 
 Time Travel permite consultar como os dados estavam em qualquer
 versão anterior ou timestamp — sem backups manuais, com custo zero.
@@ -17,6 +17,13 @@ Demonstra:
 import os
 import logging
 from datetime import datetime, timedelta
+# ─── Windows: configura HADOOP_HOME antes de importar PySpark ────
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from _winutils import setup_hadoop_home
+setup_hadoop_home()
+# ──────────────────────────────────────────────────────────────────
+
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from delta import configure_spark_with_delta_pip

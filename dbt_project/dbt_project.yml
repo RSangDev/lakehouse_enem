@@ -8,7 +8,6 @@ macro-paths: ["macros"]
 
 models:
   lakehouse_enem:
-    silver:
-      +materialized: view    # lê direto do parquet via DuckDB
     gold:
-      +materialized: table   # materializa para o dashboard consumir
+      +materialized: table
+      +schema: gold

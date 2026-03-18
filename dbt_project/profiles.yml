@@ -5,3 +5,4 @@ lakehouse_enem:
       type: duckdb
       path: "../data/warehouse/lakehouse.duckdb"
       threads: 2
+      schema: main          # schema padrão — evita prefixo main_ nos schemas gold/silver

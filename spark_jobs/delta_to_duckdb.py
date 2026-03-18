@@ -11,6 +11,13 @@ Isso é a ponte entre o mundo Spark/Delta e o mundo dbt/DuckDB.
 
 import os
 import logging
+# ─── Windows: configura HADOOP_HOME antes de importar PySpark ────
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from _winutils import setup_hadoop_home
+setup_hadoop_home()
+# ──────────────────────────────────────────────────────────────────
+
 from pyspark.sql import SparkSession
 from delta import configure_spark_with_delta_pip
 import duckdb
