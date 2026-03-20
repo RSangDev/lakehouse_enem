@@ -397,39 +397,267 @@ elif page == "⏱️  Time Travel":
     st.markdown("""
     <div class="hero">
         <h1>⏱️ Delta Lake <span>Time Travel</span></h1>
-        <p>Consulta qualquer versão histórica dos dados — sem backups manuais</p>
+        <p>Demo interativo ao vivo — consulta versões históricas reais do Delta Lake</p>
     </div>""", unsafe_allow_html=True)
 
-    features = [
-        ("VERSION AS OF",
-         "Consulta o estado exato da tabela em uma versão anterior.",
-         'df = spark.read.format("delta").option("versionAsOf", 0).load(PATH)'),
-        ("TIMESTAMP AS OF",
-         "Consulta como os dados estavam em qualquer data/hora passada.",
-         'df = spark.read.format("delta").option("timestampAsOf", "2024-01-01").load(PATH)'),
-        ("HISTORY",
-         "Auditoria completa: quem escreveu, quando, qual operação.",
-         'DeltaTable.forPath(spark, PATH).history().show()'),
-        ("ROLLBACK",
-         "Restaura a tabela para qualquer versão anterior com uma linha.",
-         'RESTORE TABLE delta.`path` TO VERSION AS OF 2'),
-        ("Schema Evolution",
-         "Adiciona colunas novas sem recriar a tabela. Versões antigas ficam acessíveis com o schema original.",
-         '.option("mergeSchema", "true")'),
-        ("ACID Transactions",
-         "MERGE garante consistência: se o job falhar no meio, a tabela não fica em estado parcial.",
-         'deltaTable.merge(source, condition).whenMatchedUpdateAll().whenNotMatchedInsertAll().execute()'),
-    ]
+    SILVER_DELTA = os.path.join(ROOT, "data", "delta", "silver", "enem")
 
-    for title, desc, code in features:
-        st.markdown(f"""
-        <div class="tt-card">
-            <div class="tt-title">{title}</div>
-            <div class="tt-desc">{desc}<br><br><code>{code}</code></div>
-        </div>""", unsafe_allow_html=True)
+    def delta_available() -> bool:
+        log_dir = os.path.join(SILVER_DELTA, "_delta_log")
+        return os.path.isdir(log_dir) and len(os.listdir(log_dir)) > 0
 
-    st.markdown('<div class="sec">Como rodar o demo de Time Travel</div>', unsafe_allow_html=True)
-    st.code("python spark_jobs/time_travel.py", language="bash")
+    # ── Carrega histórico do _delta_log sem Spark ─────────────────
+    # O _delta_log é JSON — lemos diretamente, sem precisar do PySpark
+    @st.cache_data(ttl=60)
+    def load_delta_history() -> pd.DataFrame:
+        import json, glob
+        log_dir = os.path.join(SILVER_DELTA, "_delta_log")
+        rows = []
+        for f in sorted(glob.glob(os.path.join(log_dir, "*.json"))):
+            with open(f, encoding="utf-8") as fh:
+                for line in fh:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        obj = json.loads(line)
+                        if "commitInfo" in obj:
+                            ci = obj["commitInfo"]
+                            rows.append({
+                                "versão":    ci.get("version", "?"),
+                                "timestamp": pd.to_datetime(ci.get("timestamp", 0), unit="ms"),
+                                "operação":  ci.get("operation", "?"),
+                                "parâmetros": str(ci.get("operationParameters", "")),
+                            })
+                    except Exception:
+                        continue
+        return pd.DataFrame(rows).sort_values("versão").reset_index(drop=True)
+
+    @st.cache_data(ttl=60)
+    def load_delta_schema_per_version() -> dict:
+        """Lê o schema de cada versão a partir dos metadados do _delta_log."""
+        import json, glob
+        log_dir = os.path.join(SILVER_DELTA, "_delta_log")
+        schemas = {}
+        current_version = None
+        for f in sorted(glob.glob(os.path.join(log_dir, "*.json"))):
+            with open(f, encoding="utf-8") as fh:
+                for line in fh:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        obj = json.loads(line)
+                        if "commitInfo" in obj:
+                            current_version = obj["commitInfo"].get("version")
+                        if "metaData" in obj and current_version is not None:
+                            schema_str = obj["metaData"].get("schemaString", "{}")
+                            schema_obj = json.loads(schema_str)
+                            cols = [f["name"] for f in schema_obj.get("fields", [])]
+                            schemas[current_version] = cols
+                    except Exception:
+                        continue
+        return schemas
+
+    @st.cache_data(ttl=60)
+    def load_parquet_stats() -> pd.DataFrame:
+        """Conta registros por partição nos arquivos Parquet do Silver."""
+        import glob
+        rows = []
+        for f in glob.glob(os.path.join(SILVER_DELTA, "**", "*.parquet"), recursive=True):
+            parts = f.replace("\\", "/").split("/")
+            ano = next((p.split("=")[1] for p in parts if p.startswith("ano=")), "?")
+            regiao = next((p.split("=")[1] for p in parts if p.startswith("regiao=")), "?")
+            size_kb = os.path.getsize(f) / 1024
+            rows.append({"ano": ano, "regiao": regiao, "arquivo": os.path.basename(f), "tamanho_kb": round(size_kb, 1)})
+        return pd.DataFrame(rows) if rows else pd.DataFrame()
+
+    # ─────────────────────────────────────────────────────────────
+    if not delta_available():
+        st.warning("Delta Lake Silver não encontrado. Execute o pipeline primeiro.")
+        st.code("python run.py --only-pipeline", language="bash")
+    else:
+        history = load_delta_history()
+        schemas = load_delta_schema_per_version()
+
+        # ── BLOCO 1: Linha do tempo das versões ──────────────────
+        st.markdown('<div class="sec">📋 Histórico de Versões — _delta_log</div>', unsafe_allow_html=True)
+        st.caption("Cada linha é uma transação registrada automaticamente pelo Delta Lake no arquivo `_delta_log/*.json`")
+
+        if not history.empty:
+            # Linha do tempo visual
+            fig_hist = px.scatter(
+                history, x="timestamp", y=[0]*len(history),
+                text="versão", color="operação",
+                color_discrete_sequence=COLORS,
+                size=[20]*len(history), size_max=20,
+            )
+            fig_hist.update_traces(textposition="top center", textfont_size=11)
+            pl_timeline = {k: v for k, v in PL_DARK.items() if k not in ("yaxis", "margin")}
+            fig_hist.update_layout(
+                **pl_timeline,
+                margin=dict(t=40, b=10, l=10, r=10),
+                height=160, showlegend=True,
+                yaxis=dict(visible=False, range=[-1, 1]),
+                xaxis_title="",
+                legend=dict(bgcolor="rgba(0,0,0,0)", orientation="h", y=1.3),
+            )
+            st.plotly_chart(fig_hist, width="stretch")
+
+            # Tabela detalhada
+            st.dataframe(history, width="stretch", hide_index=True)
+        else:
+            st.info("Nenhuma entrada de commitInfo encontrada no _delta_log.")
+
+        # ── BLOCO 2: Schema Evolution ao vivo ────────────────────
+        st.markdown('<div class="sec">🧬 Schema Evolution — Colunas por Versão</div>', unsafe_allow_html=True)
+        st.caption("Demonstra como o Delta Lake permite adicionar colunas sem recriar a tabela — versões antigas continuam acessíveis com o schema original.")
+
+        if schemas:
+            all_cols = sorted({c for cols in schemas.values() for c in cols})
+            matrix = []
+            for v in sorted(schemas.keys()):
+                row = {"Versão": f"v{v}"}
+                for c in all_cols:
+                    row[c] = "✅" if c in schemas[v] else "—"
+                matrix.append(row)
+            df_schema = pd.DataFrame(matrix).set_index("Versão")
+
+            # Destaca colunas novas (aparecem em versões posteriores)
+            st.dataframe(df_schema, width="stretch")
+
+            # Explica a coluna adicionada
+            new_cols = []
+            versions = sorted(schemas.keys())
+            if len(versions) >= 2:
+                v0_cols = set(schemas[versions[0]])
+                vlast_cols = set(schemas[versions[-1]])
+                new_cols = list(vlast_cols - v0_cols)
+
+            if new_cols:
+                st.markdown(f"""
+                <div class="tt-card">
+                    <div class="tt-title">🔬 Coluna adicionada via Schema Evolution</div>
+                    <div class="tt-desc">
+                        A coluna <code>{'</code>, <code>'.join(new_cols)}</code> não existia na v0.
+                        Foi adicionada com <code>.option("mergeSchema", "true")</code> após o MERGE,
+                        sem recriar a tabela ou perder o histórico anterior.
+                        A versão 0 continua acessível sem essa coluna.
+                    </div>
+                </div>""", unsafe_allow_html=True)
+
+        # ── BLOCO 3: VERSION AS OF — comparação ao vivo ──────────
+        st.markdown('<div class="sec">⏪ VERSION AS OF — Comparação entre Versões</div>', unsafe_allow_html=True)
+        st.caption("Selecione duas versões para comparar o estado dos dados em cada momento.")
+
+        versions_available = sorted(schemas.keys())
+        if len(versions_available) >= 2:
+            col_sel1, col_sel2 = st.columns(2)
+            with col_sel1:
+                v_a = st.selectbox("Versão A", versions_available,
+                                   index=0, format_func=lambda x: f"v{x}")
+            with col_sel2:
+                v_b = st.selectbox("Versão B", versions_available,
+                                   index=len(versions_available)-1,
+                                   format_func=lambda x: f"v{x}")
+
+            cols_a = schemas.get(v_a, [])
+            cols_b = schemas.get(v_b, [])
+            added   = sorted(set(cols_b) - set(cols_a))
+            removed = sorted(set(cols_a) - set(cols_b))
+            same    = sorted(set(cols_a) & set(cols_b))
+
+            c1, c2, c3 = st.columns(3)
+            with c1:
+                st.markdown(f"""
+                <div class="kpi" style="border-top-color:#22c55e;">
+                    <div class="kpi-lbl">Colunas adicionadas</div>
+                    <div class="kpi-val" style="color:#22c55e;">{len(added)}</div>
+                    <div class="kpi-sub">{', '.join(added) if added else 'nenhuma'}</div>
+                </div>""", unsafe_allow_html=True)
+            with c2:
+                st.markdown(f"""
+                <div class="kpi" style="border-top-color:#f97316;">
+                    <div class="kpi-lbl">Colunas removidas</div>
+                    <div class="kpi-val" style="color:#f97316;">{len(removed)}</div>
+                    <div class="kpi-sub">{', '.join(removed) if removed else 'nenhuma'}</div>
+                </div>""", unsafe_allow_html=True)
+            with c3:
+                st.markdown(f"""
+                <div class="kpi" style="border-top-color:#3b82f6;">
+                    <div class="kpi-lbl">Colunas em comum</div>
+                    <div class="kpi-val" style="color:#3b82f6;">{len(same)}</div>
+                    <div class="kpi-sub">schema estável</div>
+                </div>""", unsafe_allow_html=True)
+
+            # Mostra o comando equivalente em PySpark
+            st.markdown(f"""
+            <div class="tt-card" style="margin-top:1rem;">
+                <div class="tt-title">Comando PySpark equivalente</div>
+                <div class="tt-desc">
+                    <code>df_v{v_a} = spark.read.format("delta").option("versionAsOf", {v_a}).load(SILVER_PATH)</code><br>
+                    <code>df_v{v_b} = spark.read.format("delta").option("versionAsOf", {v_b}).load(SILVER_PATH)</code>
+                </div>
+            </div>""", unsafe_allow_html=True)
+
+        # ── BLOCO 4: Partições físicas do Delta ───────────────────
+        st.markdown('<div class="sec">📂 Partições Físicas — data/delta/silver/enem/</div>', unsafe_allow_html=True)
+        st.caption("O Delta Lake particiona os dados por `ano` e `regiao`. Cada partição é um diretório separado com arquivos Parquet.")
+
+        stats = load_parquet_stats()
+        if not stats.empty:
+            col_p1, col_p2 = st.columns(2)
+            with col_p1:
+                grp = stats.groupby("ano")["tamanho_kb"].sum().reset_index()
+                grp.columns = ["Ano", "Tamanho Total (KB)"]
+                fig_p = px.bar(grp, x="Ano", y="Tamanho Total (KB)",
+                               color="Ano", color_discrete_sequence=COLORS,
+                               text="Tamanho Total (KB)")
+                fig_p.update_traces(texttemplate="%{text:.0f} KB", textposition="outside")
+                fig_p.update_layout(**PL_DARK, height=280, showlegend=False,
+                                    title="Tamanho por Ano de Aplicação")
+                st.plotly_chart(fig_p, width="stretch")
+
+            with col_p2:
+                grp2 = stats.groupby(["ano","regiao"])["tamanho_kb"].sum().reset_index()
+                fig_p2 = px.bar(grp2, x="regiao", y="tamanho_kb", color="ano",
+                                color_discrete_sequence=COLORS, barmode="group",
+                                labels={"tamanho_kb": "KB", "regiao": "Região", "ano": "Ano"})
+                fig_p2.update_layout(**PL_DARK, height=280,
+                                     legend=dict(bgcolor="rgba(0,0,0,0)"),
+                                     title="Tamanho por Região e Ano")
+                st.plotly_chart(fig_p2, width="stretch")
+
+            st.dataframe(
+                stats.groupby(["ano","regiao"]).agg(
+                    arquivos=("arquivo","count"),
+                    tamanho_total_kb=("tamanho_kb","sum")
+                ).reset_index(),
+                width="stretch", hide_index=True
+            )
+
+        # ── BLOCO 5: Referência rápida dos comandos ───────────────
+        st.markdown('<div class="sec">📖 Referência de Comandos</div>', unsafe_allow_html=True)
+        cmds = [
+            ("VERSION AS OF",
+             "Lê o estado exato em uma versão específica",
+             'spark.read.format("delta").option("versionAsOf", 0).load(PATH)'),
+            ("TIMESTAMP AS OF",
+             "Lê o estado dos dados em uma data/hora passada",
+             'spark.read.format("delta").option("timestampAsOf", "2024-01-01 00:00:00").load(PATH)'),
+            ("HISTORY",
+             "Auditoria completa de todas as operações",
+             'DeltaTable.forPath(spark, PATH).history().show()'),
+            ("RESTORE",
+             "Rollback: volta a tabela para uma versão anterior",
+             'DeltaTable.forPath(spark, PATH).restoreToVersion(0)'),
+        ]
+        for title, desc, code in cmds:
+            st.markdown(f"""
+            <div class="tt-card">
+                <div class="tt-title">{title}</div>
+                <div class="tt-desc">{desc}<br><br><code>{code}</code></div>
+            </div>""", unsafe_allow_html=True)
 
 
 # ════════════════════════════════════════════════════════════════
