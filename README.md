@@ -39,7 +39,7 @@ Dashboard  (localhost:8501)
 
 ```bash
 # 1. Clonar e criar ambiente
-git clone https://github.com/seu-usuario/lakehouse-enem
+git clone https://github.com/RSangDev/lakehouse-enem
 cd lakehouse-enem
 python -m venv .venv
 .venv\Scripts\activate        # Windows
