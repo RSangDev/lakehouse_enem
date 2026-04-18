@@ -5,7 +5,7 @@ Arquitetura Lakehouse com ACID transactions, Time Travel e Schema Evolution — 
 
 ## Por que este projeto existe
 
-> Delta Lake é a base do Databricks — a plataforma dominante no mercado enterprise de dados. Este projeto demonstra os três diferenciais que entrevistadores sempre perguntam e poucos candidatos conseguem mostrar na prática: **Time Travel**, **Schema Evolution** e **ACID transactions**.
+> Delta Lake é a base do Databricks — a plataforma dominante no mercado enterprise de dados. Este projeto demonstra os três diferenciais: **Time Travel**, **Schema Evolution** e **ACID transactions**.
 
 ---
 
@@ -39,7 +39,7 @@ Dashboard  (localhost:8501)
 
 ```bash
 # 1. Clonar e criar ambiente
-git clone https://github.com/seu-usuario/lakehouse-enem
+git clone https://github.com/RSangDev/lakehouse-enem
 cd lakehouse-enem
 python -m venv .venv
 .venv\Scripts\activate        # Windows
